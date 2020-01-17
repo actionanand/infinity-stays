@@ -1,0 +1,7 @@
+{
+  "name": "infinity-stays",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

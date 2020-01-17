@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-button slot="start">
+        <ion-menu-button menu="m1"></ion-menu-button>
+      </ion-button>
+    <ion-title>Discover Places</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment (ionChange)="onFilterUpdate($event)">
+    <ion-segment-button value="all" checked>All places</ion-segment-button>
+    <ion-segment-button value="Bookable">Bookable places</ion-segment-button>
+  </ion-segment>
+  <ion-grid *ngIf="!relevantPlaces || relevantPlaces.length <= 0">
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+        <ion-text>
+          No bookable place is available right now!, Please come later.
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="relevantPlaces.length > 0">
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{relevantPlaces[0].title}}</ion-card-title>
+            <ion-card-subtitle>{{ relevantPlaces[0].price | currency:'&#x20b9;':'symbol' }} / Night</ion-card-subtitle>
+          </ion-card-header>
+          <ion-img [src]="relevantPlaces[0].imageUrl"></ion-img>
+          <ion-card-content>
+            <p>{{relevantPlaces[0].description}}</p>
+          </ion-card-content>
+          <div class="ion-text-right">
+            <ion-button fill="clear" color="primary"
+            [routerLink]="['/','places','tabs','discover',relevantPlaces[0].id]">
+              More
+            </ion-button>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+        <!-- <ion-virtual-scroll [items]="listedLoadedPlaces" approxItemHeight="89px"> -->
+          <ion-item [routerLink]="['/','places','tabs','discover',place.id]" detail *ngFor="let place of listedLoadedPlaces">
+          <!-- *virtualItem="let place"> -->
+            <ion-thumbnail slot="start">
+              <ion-img [src]="place.imageUrl"></ion-img>
+            </ion-thumbnail>
+            <ion-label>
+              <h2>{{place.title}}</h2>
+              <p>{{place.description}}</p>
+              <p>Only {{place.price | currency:'&#x20b9;':'symbol'}} per Night</p>
+            </ion-label>
+          </ion-item>
+        <!-- </ion-virtual-scroll> -->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

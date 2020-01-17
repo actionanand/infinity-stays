@@ -1,0 +1,16 @@
+<ion-item *ngIf="offer">
+  <ion-thumbnail slot="start">
+    <ion-img [src]="offer.imageUrl"></ion-img>
+  </ion-thumbnail>
+  <ion-label>
+    <h1>{{offer.title}}</h1>
+    <div class="offer-details">
+      <ion-icon name="calendar" color="lime"></ion-icon>
+      <ion-text color="primary" class="space-left">{{offer.availableFrom | date}}</ion-text>
+      <span class="space-left">to</span>
+      <ion-icon name="calendar" class="space-left" color="lime"></ion-icon>
+      <ion-text color="primary" class="space-left">{{offer.availableTo | date}}</ion-text>
+    </div>
+    <p>{{offer.price | currency:'&#x20b9;':'symbol'}} per Night</p>
+  </ion-label>
+</ion-item>

@@ -1,0 +1,8 @@
+{
+  "appId": "com.actionanand.infinityStay",
+  "appName": "Infinity Stays",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}
